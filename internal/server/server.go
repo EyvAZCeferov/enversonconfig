@@ -55,7 +55,7 @@ func Run() error {
 	}))
 	app.Get("/stream/:suuid/chat/websocket", websocket.New(handlers.StreamChatWebsocket))
 	app.Get("/stream/:suuid/viewer/websocket", websocket.New(handlers.StreamViewerWebsocket))
-	app.Static("/", "./assets")
+	app.Static("/", "../assets")
 
 	w.Rooms = make(map[string]*w.Room)
 	w.Streams = make(map[string]*w.Room)
