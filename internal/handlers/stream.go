@@ -4,11 +4,11 @@ import (
 	"fmt"
 	// "os"
 	"time"
-	w "enversonconfig/pkg/webrtc"
+	w "github.com/EyvAZCeferov/enversonconfig/pkg/webrtc"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/websocket/v2"
-    "enversonconfig/pkg/config"
+    "github.com/EyvAZCeferov/enversonconfig/config"
 )
 
 func Stream(c *fiber.Ctx) error {

@@ -4,8 +4,9 @@ import (
 	"fmt"
 	// "os"
 	"time"
-	"enversonconfig/pkg/chat"
-	w "enversonconfig/pkg/webrtc"
+	"github.com/EyvAZCeferov/enversonconfig/pkg/chat"
+	w "github.com/EyvAZCeferov/enversonconfig/pkg/webrtc"
+    "github.com/EyvAZCeferov/enversonconfig/config"
 
 	"crypto/sha256"
 
@@ -13,7 +14,7 @@ import (
 	"github.com/gofiber/websocket/v2"
 	guuid "github.com/google/uuid"
 	"github.com/pion/webrtc/v3"
-    "enversonconfig/pkg/config"
+
 )
 
 func RoomCreate(c *fiber.Ctx) error {

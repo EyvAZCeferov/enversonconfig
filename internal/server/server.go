@@ -5,8 +5,8 @@ import (
 	// "os"
 	"time"
 
-	"enversonconfig/internal/handlers"
-	w "enversonconfig/pkg/webrtc"
+	"github.com/EyvAZCeferov/enversonconfig/internal/handlers"
+	w "github.com/EyvAZCeferov/enversonconfig/pkg/webrtc"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"

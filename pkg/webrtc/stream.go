@@ -3,12 +3,12 @@ package webrtc
 import (
 	"encoding/json"
 	"log"
-	"enversonconfig/pkg/chat"
+	"github.com/EyvAZCeferov/enversonconfig/pkg/chat"
 	"sync"
 
 	"github.com/gofiber/websocket/v2"
 	"github.com/pion/webrtc/v3"
-    "enversonconfig/pkg/config"
+    "github.com/EyvAZCeferov/enversonconfig/config"
 )
 
 func StreamConn(c *websocket.Conn, p *Peers) {
