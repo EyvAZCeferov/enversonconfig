@@ -28,7 +28,7 @@ func Run() error {
 		*addr = ":62947"
 	}
 
-	engine := html.New("./views", ".html")
+	engine := html.New("../views", ".html")
 	app := fiber.New(fiber.Config{Views: engine})
 	// app := fiber.New()
 	app.Use(logger.New())

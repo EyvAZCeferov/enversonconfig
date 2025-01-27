@@ -3,7 +3,7 @@ package webrtc
 import (
 	"encoding/json"
 	"log"
-	"github.com/EyvAZCeferov/enversonconfig/pkg/chat"
+	// "github.com/EyvAZCeferov/enversonconfig/pkg/chat"
 	"sync"
 
 	"github.com/gofiber/websocket/v2"

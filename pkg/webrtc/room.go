@@ -12,11 +12,11 @@ import (
 )
 
 func RoomConn(c *websocket.Conn, p *Peers) {
-	var config webrtc.Configuration
+	var configWebrtc webrtc.Configuration
 	if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
-		config = turnConfig
+		configWebrtc = turnConfig
 	}
-	peerConnection, err := webrtc.NewPeerConnection(config)
+	peerConnection, err := webrtc.NewPeerConnection(configWebrtc)
 	if err != nil {
 		log.Print(err)
 		return
