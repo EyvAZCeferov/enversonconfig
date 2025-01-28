@@ -29,8 +29,9 @@ func Run() error {
 	}
 
 	engine := html.New("../views", ".html")
-	app := fiber.New(fiber.Config{Views: engine})
+	app := fiber.New(fiber.Config{Views: engine,ProxyHeader: fiber.HeaderXForwardedFor})
 	// app := fiber.New()
+    
 	app.Use(logger.New())
 	// app.Use(cors.New())
     app.Use(cors.New(cors.Config{

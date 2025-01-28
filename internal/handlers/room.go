@@ -27,12 +27,11 @@ func Room(c *fiber.Ctx) error {
 		c.Status(400)
 		return nil
 	}
-
-	ws := "ws"
-
-    if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
+    ws := "ws"
+	if c.Protocol() == "https" { // Determined from X-Forwarded-Proto
         ws = "wss"
-	}
+    }
+
 
 	uuid, suuid, _ := createOrGetRoom(uuid)
 	return c.Render("peer", fiber.Map{
