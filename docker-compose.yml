@@ -1,0 +1,7 @@
+#version: '3.8'
+services:
+  videocall:
+    build: .
+    ports:
+      - "62947:62947"
+    restart: unless-stopped
