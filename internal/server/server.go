@@ -2,19 +2,21 @@ package server
 
 import (
 	"flag"
+    "fmt"
 	// "os"
 	"time"
 
 	"github.com/EyvAZCeferov/enversonconfig/internal/handlers"
 	w "github.com/EyvAZCeferov/enversonconfig/pkg/webrtc"
 
+	"path/filepath"
+	"runtime"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/html"
 	"github.com/gofiber/websocket/v2"
-	"path/filepath"
-	"runtime"
 )
 
 var (
@@ -28,6 +30,7 @@ func getPath(page string) string {
 	basepath := filepath.Dir(filepath.Dir(filepath.Dir(b)))
 	return filepath.Join(basepath, page)
 }
+
 
 func Run() error {
 	flag.Parse()
@@ -72,7 +75,8 @@ func Run() error {
 	app.Get("/stream/:suuid/chat/websocket", websocket.New(handlers.StreamChatWebsocket))
 	app.Get("/stream/:suuid/viewer/websocket", websocket.New(handlers.StreamViewerWebsocket))
 	assetPath := getPath("assets")
-	app.Static("/assets", assetPath)
+    fmt.Println("Asset Path: ", assetPath)
+	app.Static("/", assetPath)
 
 	w.Rooms = make(map[string]*w.Room)
 	w.Streams = make(map[string]*w.Room)
