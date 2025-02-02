@@ -1,13 +1,13 @@
 {
     "theme_color": "#e5e9f0",
-    "description": "Talk, easily.",
+    "description": "Enverson ile danish.",
     "display": "standalone",
     "icons": [{
         "src": "icon.png",
         "sizes": "256x256",
         "type": "image/png"
     }],
-    "name": "Quik.do",
-    "short_name": "quik.do",
+    "name": "Enverson",
+    "short_name": "enverson",
     "start_url": "/"
 }
