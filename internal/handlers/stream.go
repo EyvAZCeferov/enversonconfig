@@ -3,12 +3,12 @@ package handlers
 import (
 	"fmt"
 	// "os"
-	"time"
 	w "github.com/EyvAZCeferov/enversonconfig/pkg/webrtc"
+	"time"
 
+	"github.com/EyvAZCeferov/enversonconfig/config"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/websocket/v2"
-    "github.com/EyvAZCeferov/enversonconfig/config"
 )
 
 func Stream(c *fiber.Ctx) error {
@@ -23,8 +23,8 @@ func Stream(c *fiber.Ctx) error {
 	// 	ws = "wss"
 	// }
 
-    if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
-        ws = "wss"
+	if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
+		ws = "wss"
 	}
 
 	w.RoomsLock.Lock()

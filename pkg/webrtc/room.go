@@ -8,7 +8,7 @@ import (
 	"github.com/gofiber/websocket/v2"
 	"github.com/pion/webrtc/v3"
 
-    "github.com/EyvAZCeferov/enversonconfig/config"
+	"github.com/EyvAZCeferov/enversonconfig/config"
 )
 
 func RoomConn(c *websocket.Conn, p *Peers) {

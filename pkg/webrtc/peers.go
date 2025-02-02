@@ -23,42 +23,42 @@ var (
 	turnConfig = webrtc.Configuration{
 		ICETransportPolicy: webrtc.ICETransportPolicyRelay,
 		ICEServers: []webrtc.ICEServer{
-            {
-                URLs: []string{"stun:relay.metered.ca:80"}, // stun:stun.relay.metered.ca:80
-            },
-            {
-                URLs: []string{
-                    "turn:relay.metered.ca:80",
-                },
-                Username:       "9f4f466529e522a46a75ee20",
-                Credential:     "LGAmXwz+p0N4+nuN",
-                CredentialType: webrtc.ICECredentialTypePassword,
-            },
-            {
-                URLs: []string{
-                    "turn:relay.metered.ca:80?transport=tcp",
-                },
-                Username:       "9f4f466529e522a46a75ee20",
-                Credential:     "LGAmXwz+p0N4+nuN",
-                CredentialType: webrtc.ICECredentialTypePassword,
-            },
-            {
-                URLs: []string{
-                    "turn:relay.metered.ca:443",
-                },
-                Username:       "9f4f466529e522a46a75ee20",
-                Credential:     "LGAmXwz+p0N4+nuN",
-                CredentialType: webrtc.ICECredentialTypePassword,
-            },
-            {
-                URLs: []string{
-                    "turns:relay.metered.ca:443?transport=tcp",
-                },
-                Username:       "9f4f466529e522a46a75ee20",
-                Credential:     "LGAmXwz+p0N4+nuN",
-                CredentialType: webrtc.ICECredentialTypePassword,
-            },
-        },
+			{
+				URLs: []string{"stun:relay.metered.ca:80"}, // stun:stun.relay.metered.ca:80
+			},
+			{
+				URLs: []string{
+					"turn:relay.metered.ca:80",
+				},
+				Username:       "9f4f466529e522a46a75ee20",
+				Credential:     "LGAmXwz+p0N4+nuN",
+				CredentialType: webrtc.ICECredentialTypePassword,
+			},
+			{
+				URLs: []string{
+					"turn:relay.metered.ca:80?transport=tcp",
+				},
+				Username:       "9f4f466529e522a46a75ee20",
+				Credential:     "LGAmXwz+p0N4+nuN",
+				CredentialType: webrtc.ICECredentialTypePassword,
+			},
+			{
+				URLs: []string{
+					"turn:relay.metered.ca:443",
+				},
+				Username:       "9f4f466529e522a46a75ee20",
+				Credential:     "LGAmXwz+p0N4+nuN",
+				CredentialType: webrtc.ICECredentialTypePassword,
+			},
+			{
+				URLs: []string{
+					"turns:relay.metered.ca:443?transport=tcp",
+				},
+				Username:       "9f4f466529e522a46a75ee20",
+				Credential:     "LGAmXwz+p0N4+nuN",
+				CredentialType: webrtc.ICECredentialTypePassword,
+			},
+		},
 	}
 )
 

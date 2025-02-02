@@ -3,10 +3,10 @@ package handlers
 import (
 	"fmt"
 	// "os"
-	"time"
 	"github.com/EyvAZCeferov/enversonconfig/pkg/chat"
 	w "github.com/EyvAZCeferov/enversonconfig/pkg/webrtc"
-    // "github.com/EyvAZCeferov/enversonconfig/config"
+	"time"
+	// "github.com/EyvAZCeferov/enversonconfig/config"
 
 	"crypto/sha256"
 
@@ -14,7 +14,6 @@ import (
 	"github.com/gofiber/websocket/v2"
 	guuid "github.com/google/uuid"
 	"github.com/pion/webrtc/v3"
-
 )
 
 func RoomCreate(c *fiber.Ctx) error {
@@ -27,11 +26,10 @@ func Room(c *fiber.Ctx) error {
 		c.Status(400)
 		return nil
 	}
-    ws := "ws"
+	ws := "ws"
 	if c.Protocol() == "https" { // Determined from X-Forwarded-Proto
-        ws = "wss"
-    }
-
+		ws = "wss"
+	}
 
 	uuid, suuid, _ := createOrGetRoom(uuid)
 	return c.Render("peer", fiber.Map{

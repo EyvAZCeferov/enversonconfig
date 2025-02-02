@@ -13,8 +13,8 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/html"
 	"github.com/gofiber/websocket/v2"
-    "path/filepath"
-    "runtime"
+	"path/filepath"
+	"runtime"
 )
 
 var (
@@ -24,9 +24,9 @@ var (
 )
 
 func getPath(page string) string {
-    _, b, _, _ := runtime.Caller(0)
-    basepath := filepath.Dir(filepath.Dir(filepath.Dir(b)))
-    return filepath.Join(basepath, page)
+	_, b, _, _ := runtime.Caller(0)
+	basepath := filepath.Dir(filepath.Dir(filepath.Dir(b)))
+	return filepath.Join(basepath, page)
 }
 
 func Run() error {
@@ -38,27 +38,27 @@ func Run() error {
 
 	viewsPath := getPath("views")
 
-    engine := html.New(viewsPath, ".html")
+	engine := html.New(viewsPath, ".html")
 
-	app := fiber.New(fiber.Config{Views: engine,ProxyHeader: fiber.HeaderXForwardedFor})
+	app := fiber.New(fiber.Config{Views: engine, ProxyHeader: fiber.HeaderXForwardedFor})
 	// app := fiber.New()
 
 	app.Use(logger.New())
 	// app.Use(cors.New())
-    app.Use(cors.New(cors.Config{
-        AllowOrigins:     "*",                   // Tüm origin'lere izin ver
-        AllowMethods:     "GET,POST,PUT,DELETE", // İzin verilen HTTP metodları
-        AllowHeaders:     "Origin,Content-Type,Accept,Authorization", // İzin verilen header'lar
-        AllowCredentials: true,                  // Cookie ve auth header'larına izin ver
-      }))
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     "*",                                        // Tüm origin'lere izin ver
+		AllowMethods:     "GET,POST,PUT,DELETE",                      // İzin verilen HTTP metodları
+		AllowHeaders:     "Origin,Content-Type,Accept,Authorization", // İzin verilen header'lar
+		AllowCredentials: true,                                       // Cookie ve auth header'larına izin ver
+	}))
 
 	app.Get("/", handlers.Welcome)
 	app.Get("/room/create", handlers.RoomCreate)
 	app.Get("/room/:uuid", handlers.Room)
 	app.Get("/room/:uuid/websocket", websocket.New(handlers.RoomWebsocket, websocket.Config{
 		HandshakeTimeout: 30 * time.Second, // 10s -> 30s
-    ReadBufferSize:   4096,             // Okuma buffer boyutu
-    WriteBufferSize:  4096,
+		ReadBufferSize:   4096,             // Okuma buffer boyutu
+		WriteBufferSize:  4096,
 	}))
 	app.Get("/room/:uuid/chat", handlers.RoomChat)
 	app.Get("/room/:uuid/chat/websocket", websocket.New(handlers.RoomChatWebsocket))
@@ -66,12 +66,12 @@ func Run() error {
 	app.Get("/stream/:suuid", handlers.Stream)
 	app.Get("/stream/:suuid/websocket", websocket.New(handlers.StreamWebsocket, websocket.Config{
 		HandshakeTimeout: 30 * time.Second, // 10s -> 30s
-    ReadBufferSize:   4096,             // Okuma buffer boyutu
-    WriteBufferSize:  4096,
+		ReadBufferSize:   4096,             // Okuma buffer boyutu
+		WriteBufferSize:  4096,
 	}))
 	app.Get("/stream/:suuid/chat/websocket", websocket.New(handlers.StreamChatWebsocket))
 	app.Get("/stream/:suuid/viewer/websocket", websocket.New(handlers.StreamViewerWebsocket))
-    assetPath := getPath("assets")
+	assetPath := getPath("assets")
 	app.Static("/", assetPath)
 
 	w.Rooms = make(map[string]*w.Room)
