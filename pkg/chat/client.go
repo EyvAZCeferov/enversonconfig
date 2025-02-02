@@ -9,12 +9,11 @@ import (
 )
 
 const (
-	writeWait      = 10 * time.Second
-	pongWait       = 60 * time.Second
-	pingPeriod     = (pongWait * 9) / 10
-	maxMessageSize = 512
+    writeWait      = 30 * time.Second // 10s -> 30s
+    pongWait       = 120 * time.Second // 60s -> 120s
+    pingPeriod     = (pongWait * 9) / 10 // Otomatik artar
+    maxMessageSize = 2048 // 512 -> 2048
 )
-
 var (
 	newline = []byte{'\n'}
 	space   = []byte{' '}

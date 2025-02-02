@@ -9,6 +9,7 @@ import (
 	"github.com/gofiber/websocket/v2"
 	"github.com/pion/webrtc/v3"
     "github.com/EyvAZCeferov/enversonconfig/config"
+    // "time"
 )
 
 func StreamConn(c *websocket.Conn, p *Peers) {
@@ -16,7 +17,7 @@ func StreamConn(c *websocket.Conn, p *Peers) {
 	if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
 		configws = turnConfig
 	}
-	peerConnection, err := webrtc.NewPeerConnection(configws)
+    peerConnection,err := webrtc.NewPeerConnection(configws)
 	if err != nil {
 		log.Print(err)
 		return

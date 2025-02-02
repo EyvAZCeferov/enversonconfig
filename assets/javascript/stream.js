@@ -76,6 +76,7 @@ function connectStream () {
     };
   };
 
+  console.log("[WebSocket] Connecting to Stream:", StreamWebsocketAddr);
   let ws = new WebSocket (StreamWebsocketAddr);
   pc.onicecandidate = e => {
     if (!e.candidate) {
@@ -97,6 +98,7 @@ function connectStream () {
   });
 
   ws.onclose = function (evt) {
+    console.error("[Stream] WebSocket Error:", evt); // Hata logu
     console.log ('websocket has closed');
     console.log (evt);
     pc.close ();
@@ -113,6 +115,7 @@ function connectStream () {
   };
 
   ws.onmessage = function (evt) {
+    console.log("[Stream] Received:", evt.data);
     let msg = JSON.parse (evt.data);
     if (!msg) {
       return console.log ('failed to parse msg');

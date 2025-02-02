@@ -1,3 +1,43 @@
+let activePeerConnections = [];
+let localStream;
+let audioTrack;
+
+navigator.mediaDevices.addEventListener ('devicechange', handleDeviceChange);
+
+async function handleDeviceChange () {
+  try {
+    const newStream = await navigator.mediaDevices.getUserMedia ({
+      video: false,
+      audio: {
+        sampleSize: 16,
+        channelCount: 2,
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+      },
+    });
+    const newAudioTrack = newStream.getAudioTracks ()[0];
+
+    if (audioTrack) {
+      audioTrack.stop ();
+      localStream.removeTrack (audioTrack);
+    }
+    localStream.addTrack (newAudioTrack);
+    audioTrack = newAudioTrack;
+
+    activePeerConnections.forEach (pc => {
+      if (s.track) {
+        const sender = pc.getSenders ().find (s => s.track.kind === 'audio');
+        if (sender) sender.replaceTrack (newAudioTrack);
+      }
+    });
+
+    newStream.getVideoTracks ().forEach (track => track.stop ());
+  } catch (error) {
+    console.error ('Error updating audio device:', error);
+  }
+}
+
 function copyToClipboard (text) {
   if (window.clipboardData && window.clipboardData.setData) {
     clipboardData.setData ('Text', text);
@@ -77,6 +117,7 @@ function connect (stream) {
       },
     ],
   });
+  activePeerConnections.push (pc);
   pc.ontrack = function (event) {
     if (event.track.kind === 'audio') {
       return;
@@ -109,8 +150,16 @@ function connect (stream) {
     };
   };
 
-  stream.getTracks ().forEach (track => pc.addTrack (track, stream));
+  pc.getStats (null).then (stats => {
+    stats.forEach (report => {
+      if (report.type === 'inbound-rtp' && report.kind === 'video') {
+        console.log ('Paket Kaybı: ', report.packetsLost);
+      }
+    });
+  });
 
+  stream.getTracks ().forEach (track => pc.addTrack (track, stream));
+  console.log ('[WebSocket] Connecting to Peer Room:', RoomWebsocketAddr);
   let ws = new WebSocket (RoomWebsocketAddr);
   pc.onicecandidate = e => {
     if (!e.candidate) {
@@ -125,11 +174,20 @@ function connect (stream) {
     );
   };
 
+  pc.oniceconnectionstatechange = () => {
+    if (['disconnected', 'failed', 'closed'].includes (pc.iceConnectionState)) {
+      const index = activePeerConnections.indexOf (pc);
+      if (index > -1) activePeerConnections.splice (index, 1);
+    }
+  };
+
   ws.addEventListener ('error', function (event) {
+    console.error ('[Peer] WebSocket Error:', evt);
     console.log ('error: ', event);
   });
 
   ws.onclose = function (evt) {
+    console.error ('[Peer] WebSocket Close:', evt);
     console.log ('websocket has closed');
     pc.close ();
     pc = null;
@@ -145,6 +203,7 @@ function connect (stream) {
   };
 
   ws.onmessage = function (evt) {
+    console.error ('[Peer] WebSocket Onmessage:', evt);
     let msg = JSON.parse (evt.data);
     if (!msg) {
       return console.log ('failed to parse msg');
@@ -186,22 +245,22 @@ function connect (stream) {
 navigator.mediaDevices
   .getUserMedia ({
     video: {
-      width: {
-        max: 1280,
-      },
-      height: {
-        max: 720,
-      },
+      width: {ideal: 1280, min: 640, max: 1920},
+      height: {ideal: 720, min: 360, max: 1080},
       aspectRatio: 4 / 3,
-      frameRate: 30,
+      frameRate: {ideal: 15, max: 30},
     },
     audio: {
       sampleSize: 16,
       channelCount: 2,
       echoCancellation: true,
+      noiseSuppression: true,
+      autoGainControl: true,
     },
   })
   .then (stream => {
+    localStream = stream;
+    audioTrack = stream.getAudioTracks ()[0];
     document.getElementById ('localVideo').srcObject = stream;
     connect (stream);
   })

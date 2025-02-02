@@ -50,6 +50,7 @@ document.getElementById ('form').onsubmit = function () {
 };
 
 function connectChat () {
+  console.log ('[WebSocket] Connecting to Chat:', ChatWebsocketAddr);
   chatWs = new WebSocket (ChatWebsocketAddr);
 
   chatWs.onclose = function (evt) {
@@ -61,6 +62,7 @@ function connectChat () {
   };
 
   chatWs.onmessage = function (evt) {
+    console.log("[Chat] Received:", evt.data);
     var messages = evt.data.split ('\n');
     if (slideOpen == false) {
       document.getElementById ('chat-alert').style.display = 'block';
@@ -74,6 +76,7 @@ function connectChat () {
   };
 
   chatWs.onerror = function (evt) {
+    console.error("[Chat] WebSocket Error:", evt);
     console.log ('error: ' + evt.data);
   };
 

@@ -13,6 +13,8 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/template/html"
 	"github.com/gofiber/websocket/v2"
+    "path/filepath"
+    "runtime"
 )
 
 var (
@@ -21,6 +23,12 @@ var (
 	key  = flag.String("key", "", "")
 )
 
+func getPath(page string) string {
+    _, b, _, _ := runtime.Caller(0)
+    basepath := filepath.Dir(filepath.Dir(filepath.Dir(b)))
+    return filepath.Join(basepath, page)
+}
+
 func Run() error {
 	flag.Parse()
 
@@ -28,10 +36,13 @@ func Run() error {
 		*addr = ":62947"
 	}
 
-	engine := html.New("../views", ".html")
+	viewsPath := getPath("views")
+
+    engine := html.New(viewsPath, ".html")
+
 	app := fiber.New(fiber.Config{Views: engine,ProxyHeader: fiber.HeaderXForwardedFor})
 	// app := fiber.New()
-    
+
 	app.Use(logger.New())
 	// app.Use(cors.New())
     app.Use(cors.New(cors.Config{
@@ -45,18 +56,23 @@ func Run() error {
 	app.Get("/room/create", handlers.RoomCreate)
 	app.Get("/room/:uuid", handlers.Room)
 	app.Get("/room/:uuid/websocket", websocket.New(handlers.RoomWebsocket, websocket.Config{
-		HandshakeTimeout: 10 * time.Second,
+		HandshakeTimeout: 30 * time.Second, // 10s -> 30s
+    ReadBufferSize:   4096,             // Okuma buffer boyutu
+    WriteBufferSize:  4096,
 	}))
 	app.Get("/room/:uuid/chat", handlers.RoomChat)
 	app.Get("/room/:uuid/chat/websocket", websocket.New(handlers.RoomChatWebsocket))
 	app.Get("/room/:uuid/viewer/websocket", websocket.New(handlers.RoomViewerWebsocket))
 	app.Get("/stream/:suuid", handlers.Stream)
 	app.Get("/stream/:suuid/websocket", websocket.New(handlers.StreamWebsocket, websocket.Config{
-		HandshakeTimeout: 10 * time.Second,
+		HandshakeTimeout: 30 * time.Second, // 10s -> 30s
+    ReadBufferSize:   4096,             // Okuma buffer boyutu
+    WriteBufferSize:  4096,
 	}))
 	app.Get("/stream/:suuid/chat/websocket", websocket.New(handlers.StreamChatWebsocket))
 	app.Get("/stream/:suuid/viewer/websocket", websocket.New(handlers.StreamViewerWebsocket))
-	app.Static("/", "../assets")
+    assetPath := getPath("assets")
+	app.Static("/", assetPath)
 
 	w.Rooms = make(map[string]*w.Room)
 	w.Streams = make(map[string]*w.Room)
