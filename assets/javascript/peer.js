@@ -108,6 +108,7 @@ function connect (stream) {
       },
     ],
   });
+  console.log("Hello Azerbaijania")
   console.log(pc)
   activePeerConnections.push (pc);
   pc.ontrack = function (event) {
