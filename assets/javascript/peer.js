@@ -108,6 +108,7 @@ function connect (stream) {
       },
     ],
   });
+  console.log(pc)
   activePeerConnections.push (pc);
   pc.ontrack = function (event) {
     if (event.track.kind === 'audio') {
