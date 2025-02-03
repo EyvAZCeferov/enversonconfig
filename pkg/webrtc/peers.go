@@ -102,6 +102,8 @@ func (p *Peers) RemoveTrack(t *webrtc.TrackLocalStaticRTP) {
 
 func (p *Peers) SignalPeerConnections() {
 	p.ListLock.Lock()
+
+    
 	defer func() {
 		p.ListLock.Unlock()
 		p.DispatchKeyFrame()
