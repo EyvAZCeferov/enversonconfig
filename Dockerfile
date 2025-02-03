@@ -12,13 +12,9 @@ RUN ls -la /src/assets
 FROM alpine
 WORKDIR /src
 COPY --from=builder /bin/app /bin/app
-# COPY --from=builder /src/views /src/views
-# COPY --from=builder /src/assets /src/assets
+COPY --from=builder /src/views /src/views
+COPY --from=builder /src/assets /src/assets
 
-COPY --from=builder /src/views ./views
-COPY --from=builder /src/assets ./assets
-
-# Final imajda klasörlerin varlığını kontrol et
 RUN ls -la /src/views /src/assets
 
 ENTRYPOINT ["/bin/app"]
