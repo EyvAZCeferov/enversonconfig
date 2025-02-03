@@ -107,34 +107,30 @@ function connect (stream) {
         credential: 'LGAmXwz+p0N4+nuN',
       },
     ],
-    iceTransportPolicy: "relay"
+    iceTransportPolicy: 'relay',
   });
-  console.log("Hello Azerbaijania")
-  console.log(pc)
+  console.log ('Hello Azerbaijania');
+  console.log (pc);
   activePeerConnections.push (pc);
   pc.ontrack = function (event) {
     if (event.track.kind === 'audio') {
       return;
     }
-
-    if (event.track.kind === 'video') {
-        const video = document.createElement('video');
-        video.srcObject = event.streams[0];
-        video.autoplay = true;
-        video.playsInline = true;
-        video.style.width = '100%';
-        document.getElementById('videos').appendChild(video);
+    let col = document.createElement ('div');
+    col.className = 'column is-6 peer';
+    let el = document.createElement (event.track.kind);
+    if (event.streams && event.streams[0]) {
+      el.srcObject = event.streams[0];
+    } else {
+      let newStream = new MediaStream ([event.track]);
+      el.srcObject = newStream;
     }
 
     event.track.onunmute = () => {
-        console.log('Track unmuted:', event.track.kind);
-        video.play().catch(e => console.error('Video play failed:', e));
+      console.log ('Track unmuted:', event.track.kind);
+      video.play ().catch (e => console.error ('Video play failed:', e));
     };
 
-    col = document.createElement ('div');
-    col.className = 'column is-6 peer';
-    let el = document.createElement (event.track.kind);
-    el.srcObject = event.streams[0];
     el.setAttribute ('controls', 'true');
     el.setAttribute ('autoplay', 'true');
     el.setAttribute ('playsinline', 'true');
