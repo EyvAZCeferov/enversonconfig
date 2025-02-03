@@ -175,7 +175,7 @@ function connect (stream) {
   };
 
   pc.oniceconnectionstatechange = () => {
-    if (['disconnected', 'failed', 'closed'].includes (pc.iceConnectionState)) {
+    if (['failed', 'closed'].includes (pc.iceConnectionState)) {
       const index = activePeerConnections.indexOf (pc);
       if (index > -1) activePeerConnections.splice (index, 1);
     }
