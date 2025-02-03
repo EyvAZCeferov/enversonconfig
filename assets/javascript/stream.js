@@ -4,31 +4,22 @@ function connectStream () {
   let pc = new RTCPeerConnection ({
     iceServers: [
       {
-        urls: 'stun:stun.relay.metered.ca:80',
+        urls: 'stun:198.187.28.93:3478',
       },
       {
-        urls: 'turn:global.relay.metered.ca:80',
+        urls: 'turn:198.187.28.93:3478',
         username: '9f4f466529e522a46a75ee20',
         credential: 'LGAmXwz+p0N4+nuN',
       },
       {
-        urls: 'turn:global.relay.metered.ca:80?transport=tcp',
-        username: '9f4f466529e522a46a75ee20',
-        credential: 'LGAmXwz+p0N4+nuN',
-      },
-      {
-        urls: 'turn:global.relay.metered.ca:443',
-        username: '9f4f466529e522a46a75ee20',
-        credential: 'LGAmXwz+p0N4+nuN',
-      },
-      {
-        urls: 'turns:global.relay.metered.ca:443?transport=tcp',
+        urls: 'turn:198.187.28.93:3478?transport=tcp',
         username: '9f4f466529e522a46a75ee20',
         credential: 'LGAmXwz+p0N4+nuN',
       },
     ],
   });
-
+  console.log("Hello Azerbaijania Streameerrr")
+  console.log(pc)
   pc.ontrack = function (event) {
     if (event.track.kind === 'audio') {
       return;
