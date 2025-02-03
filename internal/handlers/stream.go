@@ -23,9 +23,9 @@ func Stream(c *fiber.Ctx) error {
 	// 	ws = "wss"
 	// }
 
-	if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
+	// if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
 		ws = "wss"
-	}
+	// }
 
 	w.RoomsLock.Lock()
 	if _, ok := w.Streams[suuid]; ok {

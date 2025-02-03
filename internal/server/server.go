@@ -40,6 +40,7 @@ func Run() error {
 	}
 
 	viewsPath := getPath("views")
+    fmt.Println("Views Path: ", viewsPath)
 
 	engine := html.New(viewsPath, ".html")
 
