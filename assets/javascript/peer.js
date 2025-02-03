@@ -203,7 +203,7 @@ function connect (stream) {
   };
 
   ws.onmessage = function (evt) {
-    console.error ('[Peer] WebSocket Onmessage:', evt);
+    console.log ('[Peer] WebSocket Onmessage:', evt);
     let msg = JSON.parse (evt.data);
     if (!msg) {
       return console.log ('failed to parse msg');

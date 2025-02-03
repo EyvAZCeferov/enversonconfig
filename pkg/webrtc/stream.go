@@ -6,17 +6,18 @@ import (
 	// "github.com/EyvAZCeferov/enversonconfig/pkg/chat"
 	"sync"
 
-	"github.com/EyvAZCeferov/enversonconfig/config"
+	// "github.com/EyvAZCeferov/enversonconfig/config"
 	"github.com/gofiber/websocket/v2"
 	"github.com/pion/webrtc/v3"
 	// "time"
 )
 
 func StreamConn(c *websocket.Conn, p *Peers) {
-	var configws webrtc.Configuration
-	if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
-		configws = turnConfig
-	}
+	// var configws webrtc.Configuration
+    var configws = turnConfig
+	// if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
+	// 	configws = turnConfig
+	// }
 	peerConnection, err := webrtc.NewPeerConnection(configws)
 	if err != nil {
 		log.Print(err)
