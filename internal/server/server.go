@@ -77,7 +77,7 @@ func Run() error {
 	app.Get("/stream/:suuid/viewer/websocket", websocket.New(handlers.StreamViewerWebsocket))
 	assetPath := getPath("assets")
     fmt.Println("Asset Path: ", assetPath)
-	app.Static("/", assetPath)
+	app.Static("/assets", assetPath)
 
 	w.Rooms = make(map[string]*w.Room)
 	w.Streams = make(map[string]*w.Room)
