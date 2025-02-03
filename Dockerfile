@@ -6,15 +6,10 @@ COPY . .
 #ENV GO111MODULE=on
 RUN CGO_ENABLED=0 go build -o /bin/app ./cmd
 
-RUN ls -la /src/assets
-
-
 FROM alpine
 WORKDIR /src
 COPY --from=builder /bin/app /bin/app
 COPY --from=builder /src/views /src/views
 COPY --from=builder /src/assets /src/assets
-
-RUN ls -la /src/views /src/assets
 
 ENTRYPOINT ["/bin/app"]
