@@ -90,28 +90,19 @@ function connect (stream) {
   document.getElementById ('peers').style.display = 'block';
   document.getElementById ('chat').style.display = 'flex';
   document.getElementById ('noperm').style.display = 'none';
+
   let pc = new RTCPeerConnection ({
     iceServers: [
       {
-        urls: 'stun:stun.relay.metered.ca:80',
+        urls: 'stun:198.187.28.93:3478',
       },
       {
-        urls: 'turn:global.relay.metered.ca:80',
+        urls: 'turn:198.187.28.93:3478',
         username: '9f4f466529e522a46a75ee20',
         credential: 'LGAmXwz+p0N4+nuN',
       },
       {
-        urls: 'turn:global.relay.metered.ca:80?transport=tcp',
-        username: '9f4f466529e522a46a75ee20',
-        credential: 'LGAmXwz+p0N4+nuN',
-      },
-      {
-        urls: 'turn:global.relay.metered.ca:443',
-        username: '9f4f466529e522a46a75ee20',
-        credential: 'LGAmXwz+p0N4+nuN',
-      },
-      {
-        urls: 'turns:global.relay.metered.ca:443?transport=tcp',
+        urls: 'turn:198.187.28.93:3478?transport=tcp',
         username: '9f4f466529e522a46a75ee20',
         credential: 'LGAmXwz+p0N4+nuN',
       },
