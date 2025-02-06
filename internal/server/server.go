@@ -20,7 +20,7 @@ import (
 )
 
 var (
-	addr = flag.String("addr", ":62947", "")
+	addr = flag.String("addr", ":6333", "")
 	cert = flag.String("cert", "", "")
 	key  = flag.String("key", "", "")
 )
@@ -36,7 +36,7 @@ func Run() error {
 	flag.Parse()
 
 	if *addr == ":" {
-		*addr = ":62947"
+		*addr = ":6333"
 	}
 
 	viewsPath := getPath("views")
