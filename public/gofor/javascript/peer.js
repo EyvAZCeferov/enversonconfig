@@ -88,7 +88,7 @@ document.addEventListener ('DOMContentLoaded', () => {
 
 function connect (stream) {
   document.getElementById ('peers').style.display = 'block';
-  document.getElementById ('chat').style.display = 'flex';
+  // document.getElementById ('chat').style.display = 'flex';
   document.getElementById ('noperm').style.display = 'none';
 
   let pc = new RTCPeerConnection ({
