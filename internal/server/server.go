@@ -94,12 +94,13 @@ func Run() error {
 	}
 
 	app.Use(logger.New())
-	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "*",
-		AllowMethods:     "GET,POST,PUT,DELETE",
-		AllowHeaders:     "Origin,Content-Type,Accept,Authorization",
-		AllowCredentials: false,
-	}))
+	// app.Use(cors.New(cors.Config{
+	// 	AllowOrigins:     "*",
+	// 	AllowMethods:     "GET,POST,PUT,DELETE",
+	// 	AllowHeaders:     "Origin,Content-Type,Accept,Authorization",
+	// 	AllowCredentials: false,
+	// }))
+	app.Use(cors.New())
 
 	app.Use(func(c *fiber.Ctx) error {
 		if c.Path() == "/login" || c.Path() == "/register" {
