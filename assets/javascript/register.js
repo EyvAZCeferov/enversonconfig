@@ -9,7 +9,7 @@ if ('serviceWorker' in navigator) {
     });
   } else {
     navigator.serviceWorker
-      .register ('/sw.js')
+      .register ('/gofor/sw.js')
       .then (registration => {
         console.log ('service worker registered:', registration);
       })
