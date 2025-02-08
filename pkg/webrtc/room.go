@@ -3,19 +3,19 @@ package webrtc
 import (
 	"encoding/json"
 	"log"
+	"os"
 	"sync"
 
 	"github.com/gofiber/websocket/v2"
 	"github.com/pion/webrtc/v3"
-	// "github.com/EyvAZCeferov/enversonconfig/config"
 )
 
 func RoomConn(c *websocket.Conn, p *Peers) {
-	// var configWebrtc webrtc.Configuration
-	// if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
-	var configWebrtc = turnConfig
-	// }
-	peerConnection, err := webrtc.NewPeerConnection(configWebrtc)
+	var config webrtc.Configuration
+	if os.Getenv("ENVIRONMENT") == "PRODUCTION" {
+		config = turnConfig
+	}
+	peerConnection, err := webrtc.NewPeerConnection(config)
 	if err != nil {
 		log.Print(err)
 		return

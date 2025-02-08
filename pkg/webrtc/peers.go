@@ -2,7 +2,6 @@ package webrtc
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"sync"
 	"time"
@@ -11,7 +10,7 @@ import (
 	"github.com/pion/rtcp"
 	"github.com/pion/webrtc/v3"
 
-	"github.com/EyvAZCeferov/enversonconfig/pkg/chat"
+	"v/pkg/chat"
 )
 
 var (
@@ -81,14 +80,11 @@ func (p *Peers) AddTrack(t *webrtc.TrackRemote) *webrtc.TrackLocalStaticRTP {
 		p.SignalPeerConnections()
 	}()
 
-	uniqueID := fmt.Sprintf("%s_%d", t.StreamID(), t.SSRC())
-
-	trackLocal, err := webrtc.NewTrackLocalStaticRTP(t.Codec().RTPCodecCapability, uniqueID, t.StreamID())
+	trackLocal, err := webrtc.NewTrackLocalStaticRTP(t.Codec().RTPCodecCapability, t.ID(), t.StreamID())
 	if err != nil {
 		log.Println(err.Error())
 		return nil
 	}
-	p.TrackLocals[uniqueID] = trackLocal
 
 	p.TrackLocals[t.ID()] = trackLocal
 	return trackLocal
@@ -106,7 +102,6 @@ func (p *Peers) RemoveTrack(t *webrtc.TrackLocalStaticRTP) {
 
 func (p *Peers) SignalPeerConnections() {
 	p.ListLock.Lock()
-
 	defer func() {
 		p.ListLock.Unlock()
 		p.DispatchKeyFrame()
