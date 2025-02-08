@@ -1,5 +1,5 @@
 FROM golang:1.20-alpine AS builder
-WORKDIR /src
+WORKDIR /srcnew
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
@@ -7,9 +7,9 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /bin/app ./cmd
 
 FROM alpine
-WORKDIR /src
+WORKDIR /srcnew
 COPY --from=builder /bin/app /bin/app
-COPY --from=builder /src/views /src/views
-COPY --from=builder /src/assets /src/assets
+COPY --from=builder /srcnew/views /srcnew/views
+COPY --from=builder /srcnew/assets /srcnew/assets
 
 ENTRYPOINT ["/bin/app"]
