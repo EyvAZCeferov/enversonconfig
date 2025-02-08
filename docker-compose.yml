@@ -2,5 +2,5 @@ services:
   videocall:
     build: .
     ports:
-      - "62947:62947"
+      - "6333:6333"
     restart: unless-stopped
