@@ -21,7 +21,7 @@ import (
 )
 
 var (
-	addr         = flag.String("addr", ":6333", "")
+	addr         = flag.String("addr", "0.0.0.0:6333", "")
 	cert         = flag.String("cert", "", "")
 	key          = flag.String("key", "", "")
 	sessionStore *session.Store
@@ -175,9 +175,10 @@ func Run() error {
 	go dispatchKeyFrames()
 
 	if *cert != "" {
-		return app.ListenTLS(*addr, *cert, *key)
+		return app.ListenTLS("0.0.0.0:6333", *cert, *key)
 	}
-	return app.Listen(*addr)
+	// return app.Listen(*addr)
+	return app.Listen("0.0.0.0:6333")
 }
 
 func dispatchKeyFrames() {
