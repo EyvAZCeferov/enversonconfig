@@ -110,6 +110,15 @@ func Run() error {
 			return c.Next()
 		}
 
+		if c.Path() == "/room/"+c.Params("uuid")+"/websocket" ||
+			c.Path() == "/room/"+c.Params("uuid")+"/chat/websocket" ||
+			c.Path() == "/room/"+c.Params("uuid")+"/viewer/websocket" ||
+			c.Path() == "/stream/"+c.Params("suuid")+"/websocket" ||
+			c.Path() == "/stream/"+c.Params("suuid")+"/chat/websocket" ||
+			c.Path() == "/stream/"+c.Params("suuid")+"/viewer/websocket" {
+			return c.Next()
+		}
+
 		cookies := c.Cookies("auth_token")
 		if cookies == "" {
 			done := make(chan string, 1)

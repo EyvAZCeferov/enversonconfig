@@ -27,7 +27,7 @@ func Room(c *fiber.Ctx) error {
 		return nil
 	}
 	ws := "ws"
-	if c.Protocol() == "https" { // Determined from X-Forwarded-Proto
+	if c.Protocol() == "https" {
 		ws = "wss"
 	}
 
