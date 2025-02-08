@@ -165,6 +165,8 @@ func Run() error {
 	app.Get("/stream/:suuid/viewer/websocket", websocket.New(handlers.StreamViewerWebsocket))
 
 	assetPath := getPath("public")
+	fmt.Println("-----------------ASSETS---------------")
+	fmt.Println(assetPath)
 	app.Static("/", assetPath)
 
 	w.Rooms = make(map[string]*w.Room)
