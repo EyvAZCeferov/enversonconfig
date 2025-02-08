@@ -1,0 +1,149 @@
+.player input:focus,
+button:focus {
+    outline: 0;
+}
+.player button {
+    color: inherit;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+@keyframes showPlayer {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+.player {
+    color: #fff;
+    font-size: 0.8rem;
+    text-shadow: 0 0 10px #000;
+    position: relative;
+    overflow: hidden;
+    animation: showPlayer 1s;
+}
+.player__loader {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+.player__video {
+    display: block;
+    cursor: pointer;
+}
+.player__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+    position: absolute;
+    transform: translateY(0);
+    transition: transform 500ms;
+    transition-delay: 2s;
+}
+.player:hover .player__controls,
+.player.is-paused .player__controls {
+    transform: translateY(-100%);
+    transition: transform 500ms;
+    transition-delay: 0;
+}
+.player__toggle {
+    height: 1rem;
+    border-color: transparent transparent transparent #fff;
+    transition: 100ms all ease;
+    will-change: border-width;
+    border-style: double;
+    border-width: 0 0 0 1rem;
+}
+.player__toggle.is-paused {
+    border-style: solid;
+    border-width: 0.5rem 0 0.5rem 1rem;
+}
+.player__times--current {
+    font-weight: bold;
+}
+.player__range {
+    display: flex;
+    align-items: center;
+    transition: all 500ms;
+}
+.player__range-input {
+    max-width: 0;
+    height: 0.2rem;
+    margin-left: 0.5rem;
+    background-color: #fff;
+    overflow: hidden;
+    transition: all 500ms;
+    cursor: pointer;
+    appearance: none;
+    visibility: hidden;
+}
+.player__range-input::-webkit-slider-thumb {
+    appearance: none;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: #fff;
+}
+.player__range:hover .player__range-input {
+    max-width: 100px;
+    width: auto;
+    overflow: visible;
+    visibility: visible;
+}
+.player__progress {
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    width: 100%;
+    transition: height 300ms;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+    overflow: visible;
+}
+.player__progress:before {
+    content: "";
+    background: var(--color-action);
+    width: var(--progressbar-value);
+    height: 100%;
+    display: block;
+    transition: width 100ms;
+}
+.player__progress:hover {
+    height: 10px;
+}
+@keyframes sk-bouncedelay {
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+.spinner {
+    margin: 100px auto 0;
+    width: 70px;
+    text-align: center;
+}
+.spinner > div {
+    width: 18px;
+    height: 18px;
+    background-color: #333;
+    border-radius: 100%;
+    display: inline-block;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+.spinner .bounce1 {
+    animation-delay: -0.32s;
+}
+.spinner .bounce2 {
+    animation-delay: -0.16s;
+}

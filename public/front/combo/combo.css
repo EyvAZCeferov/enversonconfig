@@ -1,0 +1,370 @@
+header .header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.lottie-container {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+  }
+
+header.pc-header {
+    left: 0;
+}
+
+section.pc-container {
+    left: 0;
+    margin-left: 0;
+}
+
+.combo_page .not_started .content_combo_not_connect .combo_widget_not_connect {
+    padding: 20px;
+    border: 1px solid #dbe0e5;
+    border-radius: 10px;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .not_started .content_combo_not_connect .combo_widget_not_connect .combo_widget_not_connected_image_area {
+    height: 60%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .not_started .content_combo_not_connect .combo_widget_not_connect .combo_widget_not_connected_header {
+    font-size: large;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .not_started .content_combo_not_connect .combo_widget_not_connect .combo_widget_not_connected_description {
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .not_started .content_combo_not_connect .combo_widget_not_connect .combo_widget_not_connected_button {
+    margin: 10px 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .combo_container {
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .combo_container .cameras_area {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: relative;
+}
+
+.combo_page .combo_container .cameras_area .viewer_count {
+    position: absolute;
+    top: -5px;
+    right: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.combo_page .combo_container .cameras_area .frame_container {
+    background-color: #fafafa;
+    border: 1px solid #dbe0e5;
+    padding: 10px;
+    border-radius: 10px;
+    height: 400px;
+    margin: 10px;
+    width: 47%;
+}
+
+.combo_page .combo_container .cameras_area .frame_container .frame {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.combo_page .combo_container .cameras_area .frame_container .frame video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.combo_page .combo_container .cameras_area .frame_container .frame video::-webkit-media-controls {
+    display: none !important;
+}
+
+.combo_page .combo_container .cameras_area .loader_on_video_call {
+    position: absolute;
+    top: 33%;
+    margin: 0 auto;
+    z-index: 9999;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .combo_container .cameras_area .tips_header {
+    position: absolute;
+    margin: 0 auto;
+    top: 43%;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .combo_container .cameras_area .tips_header .tips_title {
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: #000;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all ease 0.3s;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.combo_page .combo_container .cameras_area .tips_header .tips_title .logo_area {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.combo_page .combo_container .cameras_area .tips_header .tips_title .logo_area img {
+    object-fit: cover;
+    width: 65%;
+    height: 65%;
+    margin: 0 auto;
+}
+
+.combo_page .combo_container .cameras_area .tips_header .tips_title h3 {
+    display: none;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.combo_page .combo_container .cameras_area .tips_header .tips_title:hover,
+.combo_page .combo_container .cameras_area .tips_header .tips_title:focus,
+.combo_page .combo_container .cameras_area .tips_header .tips_title:active {
+    width: 450px;
+    border-radius: 27px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.combo_page .combo_container .cameras_area .tips_header .tips_title:hover .logo_area,
+.combo_page .combo_container .cameras_area .tips_header .tips_title:focus .logo_area,
+.combo_page .combo_container .cameras_area .tips_header .tips_title:active .logo_area {
+    display: none;
+}
+
+.combo_page .combo_container .cameras_area .tips_header .tips_title:hover h3,
+.combo_page .combo_container .cameras_area .tips_header .tips_title:focus h3,
+.combo_page .combo_container .cameras_area .tips_header .tips_title:active h3 {
+    display: block;
+    font-size: 18px;
+    color: #000;
+}
+
+.combo_page .combo_container .in_call_buttons {
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.combo_page .combo_container .in_call_buttons button {
+    width: 25%;
+    height: 45px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 10px;
+}
+
+.combo_page .combo_container .in_call_buttons button.btn-light {
+    border: 1px solid #dbe0e5;
+}
+
+.combo_page .combo_container .in_call_buttons button.btn-primary {
+    border: 1px solid #4680ff;
+}
+
+.combo_page .combo_container .tips_content_container {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+.combo_page .combo_container .tips_content_container blockquote {
+    padding: 15px 12px;
+    border: 1px solid #e7e8ea;
+    border-radius: 12px;
+    width: 96%;
+    margin: 10px auto;
+}
+
+.combo_page .combo_container .tips_content_container blockquote p {
+    margin: 0;
+}
+
+.combo_page .combo_container .tips_content_container p {
+    width: 100%;
+}
+
+.combo_page .combo_container .tips_content_container p img {
+    width: 100%;
+}
+
+.combo_page .ended_combo {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.combo_page .ended_combo .ended_title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin: 10px auto;
+    position: relative;
+    width: 100%;
+}
+
+.combo_page .ended_combo .ended_title .shining_title {
+    color: #828282;
+    background: linear-gradient(to right, #000 0, #000 14%, #909090 22%);
+    background-position: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2s infinite linear;
+    animation-fill-mode: forwards;
+    -webkit-text-size-adjust: none;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 0;
+    }
+
+    50% {
+        background-position: 100px;
+    }
+
+    100% {
+        background-position: 200px;
+    }
+}
+
+.combo_page .ended_combo .ended_title .ended_title_by_enverson_ai {
+    color: darkgray;
+    font-size: 10px;
+    position: absolute;
+    bottom: -12px;
+    left: 42.5%;
+    text-align: right;
+    margin-bottom: 50px !important;
+}
+
+.combo_page .ended_combo .ended_lottie {
+    width: 100%;
+    height: 80px;
+}
+
+.combo_page .ended_combo .msg-content {
+    text-align: left;
+    word-break: break-all;
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.combo_page .ended_combo .msg-content h5 {
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 4px;
+    text-align: left;
+    word-break: break-all;
+}
+
+.combo_page .ended_combo .msg-content p {
+    word-break: break-all;
+}
+
+@media (max-width: 991px) {
+    .combo_page .combo_container {
+        padding: 5px;
+    }
+
+    .combo_page .combo_container .cameras_area {
+        flex-direction: column;
+    }
+
+    .combo_page .combo_container .cameras_area .frame_container {
+        width: 100%;
+        padding: 2px;
+    }
+
+    .combo_page .combo_container .cameras_area .loader_on_video_call {
+        top: 44%;
+    }
+}

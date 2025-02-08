@@ -24,7 +24,7 @@ func Stream(c *fiber.Ctx) error {
 	// }
 
 	// if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
-		ws = "wss"
+	ws = "wss"
 	// }
 
 	w.RoomsLock.Lock()

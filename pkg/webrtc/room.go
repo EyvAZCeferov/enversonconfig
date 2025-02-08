@@ -7,14 +7,13 @@ import (
 
 	"github.com/gofiber/websocket/v2"
 	"github.com/pion/webrtc/v3"
-
 	// "github.com/EyvAZCeferov/enversonconfig/config"
 )
 
 func RoomConn(c *websocket.Conn, p *Peers) {
 	// var configWebrtc webrtc.Configuration
 	// if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
-		var configWebrtc = turnConfig
+	var configWebrtc = turnConfig
 	// }
 	peerConnection, err := webrtc.NewPeerConnection(configWebrtc)
 	if err != nil {

@@ -1,11 +1,63 @@
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="assets/js/plugins/popper.min.js"></script>
+    <script src="assets/js/plugins/simplebar.min.js"></script>
+    <script src="assets/js/plugins/bootstrap.min.js"></script>
+    <script src="assets/js/fonts/custom-font.js"></script>
+    <script src="assets/js/pcoded.js"></script>
+    <script src="assets/js/plugins/feather.min.js"></script>
+    <script src="assets/js/plugins/tinymce/tinymce.min.js"></script>
+    <script src="assets/js/helper_function.js"></script>
+    <script src="front/combo/combostart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"
+        integrity="sha512-jEnuDt6jfecCjthQAJ+ed0MTVA++5ZKmlUcmDGBv2vUI/REn6FuIdixLNnQT+vKusE2hhTk2is3cFvv5wA+Sgg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-		<hr>
-		<footer class="footer">
-			<div class="content">
+    <script>
+        let ost = 0;
 
-			</div>
-			<script src="/javascript/register.js"></script>
-		</footer>
-	</div> <!-- container end -->
-</div>
+        function isMobile() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        function isChrome() {
+            return /Chrome/i.test(navigator.userAgent);
+        }
+        if (isMobile() && isChrome()) {
+            window.addEventListener('scroll', function() {
+                let cOst = window.pageYOffset || document.documentElement.scrollTop;
+                if (cOst == 0) {
+                    document.querySelector('.navbar')?.classList.add('top-nav-collapse');
+                } else if (cOst > ost) {
+                    document.querySelector('.navbar')?.classList.add('top-nav-collapse');
+                    document.querySelector('.navbar')?.classList.remove('default');
+                } else {
+                    document.querySelector('.navbar')?.classList.add('default');
+                    document.querySelector('.navbar')?.classList.remove('top-nav-collapse');
+                }
+                ost = cOst;
+            });
+        } else {
+            document.addEventListener('scroll', function() {
+                let cOst = document.documentElement.scrollTop;
+                if (cOst == 0) {
+                    if (document.querySelector('.navbar') != null)
+                        document.querySelector('.navbar').classList.add('top-nav-collapse');
+                } else if (cOst > ost) {
+                    if (document.querySelector('.navbar') != null) {
+                        document.querySelector('.navbar').classList.add('top-nav-collapse');
+                        document.querySelector('.navbar').classList.remove('default');
+                    }
+                } else {
+                    if (document.querySelector('.navbar') != null) {
+                        document.querySelector('.navbar').classList.add('default');
+                        document.querySelector('.navbar').classList.remove('top-nav-collapse');
+                    }
+                }
+                ost = cOst;
+            });
+        }
+    </script>
+	
+	<footer class="pc-footer"> <div class="footer-wrapper container-fluid"> <div class="row"> <div class="col-sm-12 col-md-12 col-lg-12 my-1 text-left text-start"> </div> <div class="col-sm-12 col-md-12 col-lg-12 my-1 text-right text-end"> <ul class="list-inline footer-link mb-0 text-right text-end footer_links"> <li class="list-inline-item"><a href="https://enverson.com/az/page/about-us">About us</a> </li> <li class="list-inline-item"><a href="https://enverson.com/az/page/terms-and-conditions">Terms and Conditions</a> </li> <li class="list-inline-item"><a href="https://enverson.com/az/page/privacy-policy">Privacy Policy</a> </li> <li class="list-inline-item"><a href="https://enverson.com/az/page/ilp">ILP</a> </li> <li class="list-inline-item"><a href="https://enverson.com/az/information_center">Məlumat mərkəzi</a></li> </ul> </div> </div> </div> </footer>
+	
 </body>

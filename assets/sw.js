@@ -13,9 +13,7 @@ self.addEventListener ('install', e => {
         '/font/v.ttf',
         '/font/v.woff',
         '/font/v.woff2',
-        '/stylesheets/main.css',
         '/stylesheets/fonts.css',
-        '/stylesheets/bulma/css/bulma.min.css',
       ];
 
       return Promise.all (

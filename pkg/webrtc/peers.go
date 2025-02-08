@@ -2,10 +2,10 @@ package webrtc
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"sync"
 	"time"
-    "fmt"
 
 	"github.com/gofiber/websocket/v2"
 	"github.com/pion/rtcp"
@@ -21,30 +21,30 @@ var (
 )
 
 var (
-    turnConfig = webrtc.Configuration{
-        ICETransportPolicy: webrtc.ICETransportPolicyRelay,
-        ICEServers: []webrtc.ICEServer{
-            {
-                URLs: []string{"stun:198.187.28.93:3478"},
-            },
-            {
-                URLs: []string{
-                    "turn:198.187.28.93:3478",
-                },
-                Username:       "9f4f466529e522a46a75ee20",
-                Credential:     "LGAmXwz+p0N4+nuN",
-                CredentialType: webrtc.ICECredentialTypePassword,
-            },
-            {
-                URLs: []string{
-                    "turn:198.187.28.93:3478?transport=tcp",
-                },
-                Username:       "9f4f466529e522a46a75ee20",
-                Credential:     "LGAmXwz+p0N4+nuN",
-                CredentialType: webrtc.ICECredentialTypePassword,
-            },
-        },
-    }
+	turnConfig = webrtc.Configuration{
+		ICETransportPolicy: webrtc.ICETransportPolicyRelay,
+		ICEServers: []webrtc.ICEServer{
+			{
+				URLs: []string{"stun:198.187.28.93:3478"},
+			},
+			{
+				URLs: []string{
+					"turn:198.187.28.93:3478",
+				},
+				Username:       "9f4f466529e522a46a75ee20",
+				Credential:     "LGAmXwz+p0N4+nuN",
+				CredentialType: webrtc.ICECredentialTypePassword,
+			},
+			{
+				URLs: []string{
+					"turn:198.187.28.93:3478?transport=tcp",
+				},
+				Username:       "9f4f466529e522a46a75ee20",
+				Credential:     "LGAmXwz+p0N4+nuN",
+				CredentialType: webrtc.ICECredentialTypePassword,
+			},
+		},
+	}
 )
 
 type Room struct {
@@ -81,14 +81,14 @@ func (p *Peers) AddTrack(t *webrtc.TrackRemote) *webrtc.TrackLocalStaticRTP {
 		p.SignalPeerConnections()
 	}()
 
-    uniqueID := fmt.Sprintf("%s_%d", t.StreamID(), t.SSRC())
+	uniqueID := fmt.Sprintf("%s_%d", t.StreamID(), t.SSRC())
 
-    trackLocal, err := webrtc.NewTrackLocalStaticRTP(t.Codec().RTPCodecCapability, uniqueID, t.StreamID())
-    if err != nil {
-        log.Println(err.Error())
-        return nil
-    }
-    p.TrackLocals[uniqueID] = trackLocal
+	trackLocal, err := webrtc.NewTrackLocalStaticRTP(t.Codec().RTPCodecCapability, uniqueID, t.StreamID())
+	if err != nil {
+		log.Println(err.Error())
+		return nil
+	}
+	p.TrackLocals[uniqueID] = trackLocal
 
 	p.TrackLocals[t.ID()] = trackLocal
 	return trackLocal
@@ -106,7 +106,6 @@ func (p *Peers) RemoveTrack(t *webrtc.TrackLocalStaticRTP) {
 
 func (p *Peers) SignalPeerConnections() {
 	p.ListLock.Lock()
-
 
 	defer func() {
 		p.ListLock.Unlock()

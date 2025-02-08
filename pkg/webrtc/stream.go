@@ -14,7 +14,7 @@ import (
 
 func StreamConn(c *websocket.Conn, p *Peers) {
 	// var configws webrtc.Configuration
-    var configws = turnConfig
+	var configws = turnConfig
 	// if config.GetEnv("ENVIRONMENT", "DEVELOPMENT") == "PRODUCTION" {
 	// 	configws = turnConfig
 	// }

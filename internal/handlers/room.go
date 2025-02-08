@@ -48,26 +48,26 @@ func RoomWebsocket(c *websocket.Conn) {
 		return
 	}
 
-    c.SetReadDeadline(time.Now().Add(60 * time.Second))
-    c.SetPongHandler(func(string) error {
-        c.SetReadDeadline(time.Now().Add(60 * time.Second))
-        return nil
-    })
+	c.SetReadDeadline(time.Now().Add(60 * time.Second))
+	c.SetPongHandler(func(string) error {
+		c.SetReadDeadline(time.Now().Add(60 * time.Second))
+		return nil
+	})
 
-    _, _, room := createOrGetRoom(uuid)
-    
-    // Keepalive için ping gönder
-    go func() {
-        ticker := time.NewTicker(30 * time.Second)
-        defer ticker.Stop()
-        
-        for {
-            <-ticker.C
-            if err := c.WriteMessage(websocket.PingMessage, nil); err != nil {
-                break
-            }
-        }
-    }()
+	_, _, room := createOrGetRoom(uuid)
+
+	// Keepalive için ping gönder
+	go func() {
+		ticker := time.NewTicker(30 * time.Second)
+		defer ticker.Stop()
+
+		for {
+			<-ticker.C
+			if err := c.WriteMessage(websocket.PingMessage, nil); err != nil {
+				break
+			}
+		}
+	}()
 
 	w.RoomConn(c, room.Peers)
 }

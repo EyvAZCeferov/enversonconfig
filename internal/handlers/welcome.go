@@ -1,7 +1,15 @@
 package handlers
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"fmt"
+	"github.com/gofiber/fiber/v2"
+)
 
 func Welcome(c *fiber.Ctx) error {
-	return c.Render("welcome", nil, "layouts/main")
+	cookies := c.Cookies("auth_token")
+	fmt.Println("-------HI-------")
+	fmt.Println(cookies)
+	return c.Render("welcome", fiber.Map{
+		"authToken": cookies,
+	}, "layouts/main")
 }

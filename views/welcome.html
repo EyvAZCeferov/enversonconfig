@@ -1,10 +1,70 @@
-<section class="hero">
-	<div class="hero-body">
-		
-		<div class="buttons">
-			<a href="/room/create" class="button is-link">
-				<strong>Create Room</strong>
-			</a>
+<section class="pc-container">
+	<section class="pc-content">
+		<input type="hidden" id="languages" value='["en", "ru"]'>
+		<input type="hidden" id="alllanguages" value='{"en": "English", "ru": "Russian"}'>
+		<input type="hidden" id="combo_settings" value='{"status": true, "open_time_hours": "10:00", "open_time_title": "Combo Not Live", "open_time_description": "Please wait until combo goes live."}'>
+		<input type="hidden" id="current_language_files" value='{"combo": {"start_combo_button": "Start Combo", "create_room_button": "Create Room", "combo_live_header": "Live Combo", "combo_live_description": "Join the live combo now!"}}'>
+		<input type="hidden" id="current_locale" value="en">
+		<input type="hidden" id="token" value="{{.authToken}}">
+		<!-- Ana HTML yapısı -->
+		<div class="combo_page">
+			<!-- Durum bilgilerini gösteren alan (arama, bağlantı, sonuç vb.) -->
+			<div id="status-section" class="my-2" style="display: none;">
+			<!-- Arama / canlı yayın alanı (VideoPr benzeri içerik) -->
+			<div id="searching-status" class="statuses searching" style="display: none;">
+				<div class="row" id="video-pr-container">
+				<!-- VideoPr bileşeni yerine yer tutucu -->
+				<div class="text-center">[VideoPr Component]</div>
+				</div>
+			</div>
+			<!-- İşlem sona erdiğinde sonuç alanı (ThinkingArea benzeri içerik) -->
+			<div id="ended-status" class="statuses ended" style="display: none;">
+				<div class="ended_combo">
+				<div id="thinking-area" class="text-center">[ThinkingArea Component]</div>
+				</div>
+			</div>
+			</div>
+			<!-- Henüz bağlantı başlatılmadığında gösterilecek alan -->
+			<div id="not-started" class="not_started">
+			<div class="content_combo_not_connect">
+				<div class="combo_widget_not_connect">
+				<!-- LottieAnimationVue bileşeni yerine yer tutucu -->
+				<div 
+					class="lottie-container combo_widget_not_connected_image_area text-center" 
+					data-lottie-path="https://lottie.host/73afd3e7-ccbb-4e18-aad0-372e0200d93e/LcmreL1cZr.json" 
+					key="combo_widget_not_connected_image_area">
+					</div>
+				<!-- Başlık -->
+				<div class="combo_widget_not_connected_header text-center" id="combo-header">
+					<!-- JS tarafından doldurulacak -->
+				</div>
+				<!-- Açıklama -->
+				<div class="combo_widget_not_connected_description text-center" id="combo-description">
+					<!-- JS tarafından doldurulacak -->
+				</div>
+				<!-- Dil ve seviye seçim alanı -->
+				<div class="combo_widget_not_connected_chosens row my-2 mx-auto w-50">
+					<div class="col text-center my-2">
+					<select id="language-select" name="language" class="form-control">
+						<!-- Diller JS ile eklenecek -->
+					</select>
+					</div>
+					<div class="col text-center my-2">
+					<select id="tips-select" name="tips" class="form-control">
+						<option>Select a level</option>
+						<!-- Seviye seçenekleri JS ile eklenecek -->
+					</select>
+					<div id="tips-error" class="invalid-feedback" style="display: none;">Select Level</div>
+					</div>
+				</div>
+				<!-- Butonlar -->
+				<div class="combo_widget_not_connected_button text-center">
+					<button id="start-combo" class="btn btn-primary">Start Combo</button>
+					<button id="create-link" class="btn btn-primary">Create Room</button>
+				</div>
+				</div>
+			</div>
+			</div>
 		</div>
-	</div>
+	</section>
 </section>
