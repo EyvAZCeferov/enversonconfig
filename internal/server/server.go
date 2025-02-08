@@ -70,10 +70,16 @@ func getPath(page string) string {
 
 func setupApp() *fiber.App {
 	viewPath := getPath("views")
+	fmt.Println(viewPath)
 	engine := html.New(viewPath, ".html")
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
+
+	assetPath := getPath("public")
+	fmt.Println("-----------------ASSETS---------------")
+	fmt.Println(assetPath)
+	app.Static("/", assetPath)
 
 	return app
 }
@@ -163,11 +169,6 @@ func Run() error {
 	}))
 	app.Get("/stream/:suuid/chat/websocket", websocket.New(handlers.StreamChatWebsocket))
 	app.Get("/stream/:suuid/viewer/websocket", websocket.New(handlers.StreamViewerWebsocket))
-
-	assetPath := getPath("public")
-	fmt.Println("-----------------ASSETS---------------")
-	fmt.Println(assetPath)
-	app.Static("/", assetPath)
 
 	w.Rooms = make(map[string]*w.Room)
 	w.Streams = make(map[string]*w.Room)
